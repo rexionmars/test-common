@@ -28,15 +28,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        with: 
-            submodules: 'true'
+        with:
+          repository: arjun-raj-kuppala/test-backend1
       
-      - name: Check latest commit on submodule project
+      - name: Check directory structure
         run: |
-             cd $GITHUB_WORKSPACE/backend1 
-             git log -1
-             cd $GITHUB_WORKSPACE/backend2
-             git log -1
+             cd $GITHUB_WORKSPACE
+             ls -lart
       
       - name: Running test-common build
         run: |
