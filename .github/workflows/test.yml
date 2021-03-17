@@ -28,8 +28,16 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      
+      - uses: actions/checkout@main
         with:
           repository: arjun-raj-kuppala/test-backend1
+          path: ./test-backend1
+          
+      - uses: actions/checkout@main
+        with:
+          repository: arjun-raj-kuppala/test-backend2
+          path: ./test-backend2
       
       - name: Check directory structure
         run: |
