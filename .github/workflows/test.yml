@@ -28,6 +28,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        with:
+          path: ./test-common
       
       - uses: actions/checkout@main
         with:
@@ -41,12 +43,12 @@ jobs:
       
       - name: Check directory structure
         run: |
-             cd $GITHUB_WORKSPACE
+             cd $GITHUB_WORKSPACE/test-common
              ls -lart
       
       - name: Running test-common build
         run: |
-            cd $GITHUB_WORKSPACE
+            cd $GITHUB_WORKSPACE/test-common
             echo "starting the build"
             ./build.sh
             echo "build completed successfully"
@@ -54,14 +56,14 @@ jobs:
       - name: Running tests on backend1
         run: |
              echo "starting test execution on backend1"
-             cd $GITHUB_WORKSPACE
+             cd $GITHUB_WORKSPACE/test-common
              ./test.sh
              echo "test execution completed"
              
       - name: Running tests on backend2
         run: |
              echo "starting test execution on backend2"
-             cd $GITHUB_WORKSPACE
+             cd $GITHUB_WORKSPACE/test-common
              ./test.sh
              echo "test execution completed on backend2"
              
