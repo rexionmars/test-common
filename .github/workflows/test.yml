@@ -34,6 +34,7 @@ jobs:
       - uses: actions/checkout@main
         with:
           repository: arjun-raj-kuppala/test-backend1
+          ref: 'main'
           path: ./test-backend1
 
       - name: Running test-common build
@@ -84,6 +85,7 @@ jobs:
       - uses: actions/checkout@main
         with:
           repository: arjun-raj-kuppala/test-backend2
+          ref: 'main'
           path: ./test-backend2
 
       - name: Running test-common build
