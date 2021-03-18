@@ -22,7 +22,7 @@ jobs:
   # This workflow contains a single job called "build"
   build-test-backend1:
     # The type of runner that the job will run on
-    runs-on: test-anl
+    runs-on: backend1-host
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -73,7 +73,7 @@ jobs:
              
   build-test-backend2:
     # The type of runner that the job will run on
-    runs-on: test-anl
+    runs-on: backend2-host
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
