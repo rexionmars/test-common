@@ -59,7 +59,7 @@ jobs:
              
       - name: Running test-backend1 tests
         run: |
-             echo "starting hip-common tests on backend1"
+             echo "starting test-backend1 tests on backend1"
              cd $GITHUB_WORKSPACE/test-backend1
              ./test.sh
              echo "test execution completed on backend1"
@@ -109,7 +109,7 @@ jobs:
              
       - name: Running test-backend2 tests
         run: |
-             echo "starting hip-common tests on backend2"
+             echo "starting test-backend2 tests on backend2"
              cd $GITHUB_WORKSPACE/test-backend2
              ./test.sh
              echo "test execution completed on backend2"
