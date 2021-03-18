@@ -26,16 +26,16 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks-out your repository under $GITHUB_WORKSPACE/test-common
       - uses: actions/checkout@v2
         with:
           path: ./test-common
-      
+      # Checks-out your repository under $GITHUB_WORKSPACEtest-backend1
       - uses: actions/checkout@main
         with:
           repository: arjun-raj-kuppala/test-backend1
           path: ./test-backend1
-          
+      # Checks-out your repository under $GITHUB_WORKSPACE/test-backend2
       - uses: actions/checkout@main
         with:
           repository: arjun-raj-kuppala/test-backend2
@@ -70,6 +70,6 @@ jobs:
       - name: Clean temp directory
         run: |
              cd $GITHUB_WORKSPACE
-             rm -rf *
+             rm -rf *.*
              echo "cleaned up the workspace"
 
