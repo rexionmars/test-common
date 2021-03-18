@@ -20,7 +20,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build-test-backend1:
     # The type of runner that the job will run on
     runs-on: test-anl
 
@@ -35,17 +35,7 @@ jobs:
         with:
           repository: arjun-raj-kuppala/test-backend1
           path: ./test-backend1
-      # Checks-out your repository under $GITHUB_WORKSPACE/test-backend2
-      - uses: actions/checkout@main
-        with:
-          repository: arjun-raj-kuppala/test-backend2
-          path: ./test-backend2
-      
-      - name: Check directory structure
-        run: |
-             cd $GITHUB_WORKSPACE/test-common
-             ls -lart
-      
+
       - name: Running test-common build
         run: |
             cd $GITHUB_WORKSPACE/test-common
@@ -53,21 +43,78 @@ jobs:
             ./build.sh
             echo "build completed successfully"
       
-      - name: Running tests on backend1
+      - name: Running backend1 build
         run: |
              echo "starting test execution on backend1"
-             cd $GITHUB_WORKSPACE/test-common
-             ./test.sh
+             cd $GITHUB_WORKSPACE/test-backend1
+             ./build.sh
              echo "test execution completed"
              
-      - name: Running tests on backend2
+      - name: Running test-common tests
+        run: |
+             echo "starting hip-common tests on backend1"
+             cd $GITHUB_WORKSPACE/test-common
+             ./test.sh
+             echo "test execution completed on backend1"
+             
+      - name: Running test-backend1 tests
+        run: |
+             echo "starting hip-common tests on backend1"
+             cd $GITHUB_WORKSPACE/test-backend1
+             ./test.sh
+             echo "test execution completed on backend1"
+
+      - name: Clean workspace
+        run: |
+             cd $GITHUB_WORKSPACE
+             rm -rf *.*
+             echo "cleaned up the workspace"
+             
+  build-test-backend2:
+    # The type of runner that the job will run on
+    runs-on: test-anl
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE/test-common
+      - uses: actions/checkout@v2
+        with:
+          path: ./test-common
+      # Checks-out your repository under $GITHUB_WORKSPACEtest-backend1
+      - uses: actions/checkout@main
+        with:
+          repository: arjun-raj-kuppala/test-backend2
+          path: ./test-backend2
+
+      - name: Running test-common build
+        run: |
+            cd $GITHUB_WORKSPACE/test-common
+            echo "starting the build"
+            ./build.sh
+            echo "build completed successfully"
+      
+      - name: Running backend2 build
         run: |
              echo "starting test execution on backend2"
+             cd $GITHUB_WORKSPACE/test-backend2
+             ./build.sh
+             echo "build completed successfully"
+             
+      - name: Running test-common tests
+        run: |
+             echo "starting hip-common tests on backend1"
              cd $GITHUB_WORKSPACE/test-common
+             ./test.sh
+             echo "test execution completed on backend1"
+             
+      - name: Running test-backend2 tests
+        run: |
+             echo "starting hip-common tests on backend2"
+             cd $GITHUB_WORKSPACE/test-backend2
              ./test.sh
              echo "test execution completed on backend2"
              
-      - name: Clean temp directory
+      - name: Clean workspace
         run: |
              cd $GITHUB_WORKSPACE
              rm -rf *.*
