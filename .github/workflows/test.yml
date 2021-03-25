@@ -31,7 +31,7 @@ jobs:
         with:
           path: ./test-common
       # Checks-out your repository under $GITHUB_WORKSPACEtest-backend1
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v2
         with:
           repository: arjun-raj-kuppala/test-backend1
           ref: 'main'
@@ -82,7 +82,7 @@ jobs:
         with:
           path: ./test-common
       # Checks-out your repository under $GITHUB_WORKSPACEtest-backend1
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v2
         with:
           repository: arjun-raj-kuppala/test-backend2
           ref: 'main'
